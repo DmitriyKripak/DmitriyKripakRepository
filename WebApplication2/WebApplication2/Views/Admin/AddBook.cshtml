@@ -1,0 +1,27 @@
+﻿@{ 
+    Layout = null;
+}
+
+@using (Html.BeginForm("Upload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>
+        <label for="BookName">Title: </label>
+        <input type="text" name="BookName" id="BookName">
+    </p>
+
+    <p>
+        <label for="Authors">Author(s): </label>
+        <input type="text" name="Authors" id="Authors">
+    </p>
+
+        <p>
+            <label for="Total">Total: </label>
+            <input type="text" name="Total" id="Total">
+        </p>
+
+    <input type="file" name="upload"><br>
+    <input type="submit" value="Add" />
+}
+
+
+

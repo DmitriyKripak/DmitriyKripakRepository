@@ -1,0 +1,46 @@
+﻿@model string
+
+@{
+    Layout = null;
+}
+
+
+<meta charset="utf-8">
+<title>Registration</title>
+<link href="~/Content/style.css" rel="stylesheet" />
+<script src="~/scripts/RegFormValid.js"></script>
+
+
+@if(Model != null)
+{
+    <p>@Model.ToString()</p>
+}
+
+<div class="login">
+    @using (Html.BeginForm("RegForm", "Registration", FormMethod.Post, new { id = "form"}))
+    {
+        <p>
+            <label for="login">Логин:</label>
+            <input type="text" name="Login" id="login">
+        </p>
+
+        <p>
+            <label for="email">Пароль:</label>
+            <input type="text" name="Email" id="email">
+        </p>
+
+        <p class="login-submit">
+            <button type="submit" class="login-button" onclick="validate(this.form)"> <!--onsubmit="return (ValidMail()&&ValidPhone())"-->
+            </button>
+        </p>
+    }
+</div>
+
+
+
+
+
+
+
+
+

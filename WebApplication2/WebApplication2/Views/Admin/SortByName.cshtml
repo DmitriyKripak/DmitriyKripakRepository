@@ -1,0 +1,84 @@
+﻿
+@model WebApplication2.Models.BooksContainer
+
+@using WebApplication2.Models;
+
+@{
+    //Layout = "~/Views/Shared/_LayoutAdm.cshtml";
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    int i = 0;
+    foreach (_Book book in @Model)
+    {
+        <div class="items" id=@string.Format("deleteBook" + i.ToString())>
+
+            @Html.DisplayFor(modeluser => book.BookName)
+
+            @Html.DisplayFor(modeluser => book.Authors)
+
+            <p>Всего : </p>
+            <div id=@string.Format("сhangeQuantity" + i.ToString())>
+
+                @Html.DisplayFor(modeluser => book.Total)
+            </div>
+            <p>Доступно : </p>
+            <div id=@string.Format("сhangeQuantity" + i.ToString())>
+                @Html.DisplayFor(modeluser => book.Available)
+            </div>
+
+            @*____________History Form________________________________________________________*@
+            @using (Ajax.BeginForm("ShowHistory", new AjaxOptions
+                    {
+                        UpdateTargetId = string.Format("asyncHistory" + i.ToString())
+                    }))
+                    {
+                <div>
+                    <p>
+                        <img src="@Url.Content(book.LinkPhoto)" width="90" height="150" class="leftimg">
+                        <div id=@string.Format("asyncHistory" + i.ToString())>
+                        </div>
+                    </p>
+                </div>
+
+
+                    <button name="WatchHistory" type="submit" value=@book.Id>Watch History</button>
+
+
+            }
+            @*_________________________________________________________________________________*@
+
+            @*_____________Quantity Form_______________________________________________________*@
+
+            @using (Ajax.BeginForm("ChangeQuantity", new AjaxOptions
+                    {
+                        UpdateTargetId = string.Format("сhangeQuantity" + i.ToString())
+                    }))
+                    {
+                @Html.TextBox("сhangeQuantity")
+                <button name="nameSubmit" type="submit" value=@book.Id>New Quantity</button>
+            }
+            @*_________________________________________________________________________________*@
+
+            @*_____________Delete Form_______________________________________________________*@
+
+            @using (Ajax.BeginForm("DeleteBook", new AjaxOptions
+                    {
+                        UpdateTargetId = string.Format("deleteBook" + i.ToString())
+                    }))
+                    {
+                <button name="Delete" type="submit" value=@book.Id>Delete</button>
+            }
+            @*_________________________________________________________________________________*@
+        </div>
+        i++;
+    }
+    <button name="AddBook" type="submit">Add Book</button>
+
+}
+else
+{
+    <p>The failed access to the database!!!</p>
+}

@@ -1,0 +1,14 @@
+﻿@model int
+
+@{
+    Layout = null;
+}
+
+@if(Model.ToString() != null && Model.ToString() != string.Empty)
+{
+    @Model
+}
+else
+{
+    <p>The number was not altered!!!</p>
+}

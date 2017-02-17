@@ -1,0 +1,9 @@
+﻿.fixed-button {
+margin: 0px;
+z-index: 99999;
+position: fixed;
+top: 300px;
+left: 0px;
+width: 50px;
+height: 166px;
+}

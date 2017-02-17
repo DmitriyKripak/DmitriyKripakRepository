@@ -1,0 +1,66 @@
+﻿@using System;
+@using WebApplication2.Controllers;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <style>
+        .leftimg {
+            float: left;
+            margin: 7px 7px 7px 0; 
+        }
+    </style>
+</head>
+<body>
+ 
+  <div class="navbar navbar-inverse navbar-fixed-top">
+        <!--Бренд и переключатель, который вызывает меню на мобильных устройствах -->
+       @* <div class="navbar-header">
+        <!-- Кнопка с полосочками, которая открывает меню на мобильных устройствах -->
+
+        <!-- Бренд или логотип фирмы (обычно содержит ссылку на главную страницу) -->
+        <a href="#" class="navbar-brand">Бренд</a>
+    </div>*@
+        
+        <div class="collapse navbar-collapse" id="main-menu">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("All books", "Index", "Home")</li>
+                <li>@Html.ActionLink("Books available", "BooksAvailable", "Home", new { toggle = "Books available" }, null)</li>
+                <li>@Html.ActionLink("Taken books", "BooksAvailable", "Home", new { toggle = "Taken books" }, null)</li>
+                <li>@Ajax.ActionLink("Sort by name", "SortByName", "Home", new AjaxOptions { UpdateTargetId = "render" })</li>
+                <li>@Ajax.ActionLink("Sort by authors", "SortByAuthors", "Home", new AjaxOptions { UpdateTargetId = "render" })</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (HomeController.IsAuthenticate)
+                {
+                <li>@Html.ActionLink("LogOut", "LogOut", "Home", null, new { @class = "navbar-brand" })</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("LogIn", "RegForm", "Registration", null, new { @class = "navbar-brand" })</li>
+                }
+            </ul>
+        </div>
+      </div>
+    <div class="container body-content">
+        <div id="render">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - designed by me </p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

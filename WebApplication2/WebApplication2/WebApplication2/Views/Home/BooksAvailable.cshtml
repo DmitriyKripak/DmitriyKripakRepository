@@ -1,0 +1,48 @@
+﻿@model WebApplication2.Models.BooksContainer
+@using WebApplication2.Models;
+
+@if (Model != null)
+{
+    <div class="wrapper">
+        <div class="masonry">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                int i = 0;
+                foreach (_Book book in @Model)
+                {
+                    <div class="items">
+
+                        @Html.DisplayFor(modeluser => book.BookName)
+
+                        @Html.DisplayFor(modeluser => book.Authors)
+
+                        @Html.DisplayFor(modeluser => book.Total)
+
+                        @Html.DisplayFor(modeluser => book.Available)
+
+                        <img src="@Url.Content(book.LinkPhoto)" />
+
+
+                        @if (ViewBag.IsBook != -1 && ViewBag.IsBook != null)
+                        {
+                            <button name="selectionBook" type="submit" value=@i.ToString() disabled title="Недоступно...">TakeBook</button>
+                            if (i == ViewBag.IsBook)
+                            {
+                                <button name="returnBook" type="submit" value=@i.ToString() title="Вернуть книгу">ReturnBook</button>
+                            }
+                        }
+                        else
+                        {
+                            <button name="selectionBook" type="submit" value=@i.ToString()>TakeBook</button>
+                        }
+                    </div>
+                    i++;
+                }
+            }
+        </div>
+    </div>
+}
+else
+{
+    <p>ФСЕ</p>
+}

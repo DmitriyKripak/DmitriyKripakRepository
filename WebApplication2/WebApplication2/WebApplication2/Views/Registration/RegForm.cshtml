@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<meta charset="utf-8">
+<title>Registration</title>
+<link href="~/Content/style.css" rel="stylesheet" />
+
+@*<div class="vladmaxi-top">
+    <a href="http://vladmaxi.net" target="_blank">Главная Vladmaxi.net</a>
+    <span class="right">
+        <a href="http://vladmaxi.net/web-developer/css/sbornik-22-luchshix-form-vxoda-registracii-na-sajt-html-css.html">
+            <strong>Вернуться назад к статье</strong>
+        </a>
+    </span>
+    <div class="clr"></div>
+    </div>*@
+<div class="login">
+    @using (Html.BeginForm("RegForm", "Registration", FormMethod.Post))
+            {
+        <p>
+            <label for="login">Логин:</label>
+            <input type="text" name="Login" id="login">
+        </p>
+
+        <p>
+            <label for="password">Пароль:</label>
+            <input type="text" name="Email" id="email">
+        </p>
+
+        <p class="login-submit">
+            <button type="submit" class="login-button">
+                <img src="~/Resources/arrow.png" />
+            </button>
+        </p>
+
+            <p class="forgot-password"><a href="index.html">Забыл пароль?</a></p>
+    }
+</div>
+
+
+
+
+
+
+

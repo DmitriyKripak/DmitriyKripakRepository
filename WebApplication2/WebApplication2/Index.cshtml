@@ -1,0 +1,88 @@
+﻿@model WebApplication2.Models.BooksContainer
+@using WebApplication2.Models;
+
+<title>library</title>
+<meta charset="utf-8" />
+<link href="~/content/bootstrap.min.css" rel="stylesheet" />
+@if (Model != null)
+{
+    <div class="absolute-center">
+        <table class="table">
+            @*<tr>
+                    <th>
+                        имя
+                    </th>
+                    <th>
+                        авторы
+                    </th>
+                    <th>
+                        количество
+                    </th>
+                    <th>
+                        в наличии
+                    </th>
+
+                </tr>*@
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                int i = 0;
+                foreach (var book in @Model.GetAccount())
+                {
+                    <tr>
+                        <td>
+                            @*<td>
+                                    @Html.DisplayFor(modeluser => book.BookName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modeluser => book.Authors)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modeluser => book.Total)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modeluser => book.Available)
+                                </td>
+                                <td>
+                                   <img src="@Url.Content(book.LinkPhoto)" />
+                                </td>
+                                <td>*@
+
+                            @Html.DisplayFor(modeluser => book.BookName)
+
+                            @Html.DisplayFor(modeluser => book.Authors)
+
+                            @Html.DisplayFor(modeluser => book.Total)
+
+                            @Html.DisplayFor(modeluser => book.Available)
+
+                            <img src="@Url.Content(book.LinkPhoto)" />
+
+                            @*<td>*@
+                            @if (ViewBag.IsBook != -1)
+                            {
+                                <button name="selectionBook" type="submit" value=@i.ToString() disabled title="Недоступно...">TakeBook</button>
+                                if (i == ViewBag.IsBook)
+                                {
+                                    <button name="returnBook" type="submit" value=@i.ToString() title="Вернуть книгу">ReturnBook</button>
+                                }
+                            }
+                            else
+                            {
+                                <button name="selectionBook" type="submit" value=@i.ToString()>TakeBook</button>
+                            }
+                            @*</td>*@
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+        </table>
+    </div>
+}
+else
+{
+    <p>ФСЕ</p>
+}
+
+
+
